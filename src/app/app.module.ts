@@ -4,17 +4,35 @@ import {ReactiveFormsModule} from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { LogInComponent } from './components/log-in/log-in.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthguardGuard } from './services/authguard.guard';
+import { UserService } from './services/user.service';
+
+const appRoutes: Routes = [
+  {
+    path: 'homepage',
+    canActivate: [AuthguardGuard],
+    component: HomepageComponent
+  },
+   {
+      path: '',
+      component: LogInComponent
+    }
+]
 
 @NgModule({
   declarations: [
     AppComponent,
-    LogInComponent
+    LogInComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [UserService,AuthguardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
