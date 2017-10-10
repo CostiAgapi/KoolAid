@@ -6,21 +6,8 @@ import { HttpModule  } from '@angular/http';
 import { AppComponent } from './app.component';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
-import { RouterModule, Routes } from '@angular/router';
-import { AuthguardGuard } from './services/authguard.guard';
 import { UserService } from './services/user.service';
 
-const appRoutes: Routes = [
-  {
-    path: 'homepage',
-    canActivate: [AuthguardGuard],
-    component: HomepageComponent
-  },
-   {
-      path: '',
-      component: LogInComponent
-    }
-]
 
 @NgModule({
   declarations: [
@@ -31,10 +18,9 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    HttpModule,
-    RouterModule.forRoot(appRoutes)
+    HttpModule
   ],
-  providers: [UserService,AuthguardGuard],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
