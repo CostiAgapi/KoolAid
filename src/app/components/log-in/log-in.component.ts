@@ -22,9 +22,11 @@ export class LogInComponent implements OnInit {
   logInForm: FormGroup;
 
   loginUser(user){
-      if(user.username=='admin' && user.password=='admin'){
-        this.userService.setUserLoggedIn();
-        this.router.navigate(['homepage']);
-      }
+          console.log(user);
+          this.userService.postUserCredentialsToWS(user).subscribe();
+   }
+
+  getCars(){
+      this.userService.getCars().subscribe();
   }
 }
