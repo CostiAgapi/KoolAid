@@ -26,6 +26,7 @@ export class LogInComponent implements OnInit {
    }
 
   getCars(){
-      this.userService.getCars().subscribe();
+      console.log("merge pe aici");
+      this.userService.getCars().subscribe(result => console.log(result.json()));
   }
 }

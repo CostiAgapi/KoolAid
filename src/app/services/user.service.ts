@@ -10,6 +10,7 @@ export class UserService {
   private isUserLoggedIn;
   private username;
   private webServicesLink = "http://localhost:8080/";
+  private headers;
 
   constructor(private httpService: Http) {
 
@@ -25,8 +26,6 @@ export class UserService {
 
   postUserCredentialsToWS(user){
       var jsonUser  = JSON.stringify(user);
-      //var headers = new Headers({ 'Content-Type': 'application/json'});
-      //var options = new RequestOptions({ headers: headers });
       return this.httpService.post("http://localhost:8080/login",jsonUser).map((response: Response) => {
             this.token = response.headers.get('Authorization');
             console.log("Authorization header: " + response.headers.get('Authorization'));
@@ -46,6 +45,9 @@ export class UserService {
   }
 
   getCars(){
-    return this.httpService.get("http://localhost:8080/api/getString");
+      this.headers = new Headers();
+      this.headers.append("Authorization", this.token);
+      var options = new RequestOptions({ headers: this.headers });
+      return this.httpService.get("http://localhost:8080/getString",options);
   }
 }
