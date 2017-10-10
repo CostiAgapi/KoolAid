@@ -9,6 +9,8 @@ import { UserService } from '../../services/user.service';
 })
 export class LogInComponent implements OnInit {
 
+  logInForm: FormGroup;
+
   constructor(private userService: UserService) { }
 
   ngOnInit() {
@@ -17,8 +19,6 @@ export class LogInComponent implements OnInit {
           password: new FormControl("",Validators.required)
       })
   }
-
-  logInForm: FormGroup;
 
   loginUser(user){
           console.log(user);
