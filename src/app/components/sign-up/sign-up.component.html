@@ -1,14 +1,28 @@
 <form [formGroup]="signUpForm" (ngSubmit)="signUpUser(signUpForm.value)" >
   <div>
+    <h3>Username:</h3>
     <input type="text" formControlName="username">
   </div>
   <div>
-    <input type="text" formControlName="password">
+    <h3>Password:</h3>
+    <input type="password" formControlName="password">
   </div>
   <div>
+    <h3>First Name:</h3>
+    <input type="text" formControlName="firstName">
+  </div>
+  <div>
+    <h3>Last Name:</h3>
+    <input type="text" formControlName="lastName">
+  </div>
+  <div>
+    <h3>Email:</h3>
     <input type="text" formControlName="email">
   </div>
   <div>
     <input type="submit" [disabled]="!signUpForm.valid" value="Sign Up">
   </div>
 </form>
+
+<button (click)="signInWithGoogle()">Google</button>
+<button (click)="signInWithFB()">Facebook</button>

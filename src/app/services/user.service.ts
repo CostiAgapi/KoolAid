@@ -28,20 +28,15 @@ export class UserService {
       var jsonUser  = JSON.stringify(user);
       return this.httpService.post("http://localhost:8080/login",jsonUser).map((response: Response) => {
             this.token = response.headers.get('Authorization');
-            console.log("Authorization header: " + response.headers.get('Authorization'));
-            console.log("all headers: " + response.headers.keys());
-            console.log("--------");
-            console.log(this.token);
         });
 
   }
 
   createNewUser(user){
     var jsonUser  = JSON.stringify(user);
-    console.log(jsonUser);
         return this.httpService.post("http://localhost:8080/users/sign-up",jsonUser).map((response: Response) => {
-              console.log(response.ok);
-    });
+         this.token = response.headers.get('Authorization');
+         });
   }
 
   getCars(){
